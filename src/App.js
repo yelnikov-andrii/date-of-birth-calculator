@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box, Container } from "@mui/material";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import MyInput from "./components/MyInput";
+import { useState } from "react";
+import Matrix from "./components/Matrix";
 
 function App() {
+  const [value, setValue] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Container maxWidth="xl">
+        <Box>
+          <MyInput 
+            value={value}
+            setValue={setValue}
+          />
+        </Box>
+        <Matrix 
+          value={value}
+        />
+      </Container>
+    </LocalizationProvider>
+
   );
 }
 
